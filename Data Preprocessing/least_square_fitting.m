@@ -23,9 +23,7 @@ z = (z - min(z))/(max(z) - min(z));
 % zlabel('z');
 
 figure;
-% fitobject = fit([x,y],z,'lowess')
 f=fit([x,y],z,'poly11','Normalize','on','Robust','Bisquare');
-% T = table(x,y,z);
 
 coeffs = coeffvalues(f)
 pc = coeffs(1);
