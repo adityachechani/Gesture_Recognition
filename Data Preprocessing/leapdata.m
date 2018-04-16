@@ -21,20 +21,21 @@ sf = fit([x, y],z,'poly11');
 % plot(sf,[x,z],y)
 x = (x- min(x))/(max(x)- min(x));
 y = (y- min(y))/(max(y)- min(y));
-% figure;
-% plot(x,y)
+figure;
+plot(x,y)
 s = x + 1i*y;
-s_dft = fft(s,128);
-s_inv = ifft(s_dft,512);
+p = 165
+s_dft = fft(s,p);
+s_inv = ifft(s_dft,p);
 % x_recon = real(s_inv);
 % y_recon = imag(s_inv);
 figure;
 plot(s_inv)
-p =10;
-a = fftshift(s_dft);
-ind = round(((p)/100)*128);
-a_sort = sort((abs(a)),'descend');
-a(abs(a) <  a_sort(ind))=0;
-b = ifft(fftshift(a),512);
-figure;
-plot(b);
+% p =10;
+% a = fftshift(s_dft);
+% ind = round(((p)/100)*128);
+% a_sort = sort((abs(a)),'descend');
+% a(abs(a) <  a_sort(ind))=0;
+% b = ifft(fftshift(a),512);
+% figure;
+% plot(b);
