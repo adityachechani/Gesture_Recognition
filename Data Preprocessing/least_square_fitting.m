@@ -32,7 +32,5 @@ py = coeffs(3);
 plot( f, [x, y], z );
 hold on
 Z = pc + px.*x + py.*y;
-
 plot3(x, y, Z, 'ro');
-
-title(sprintf('Plotting plane z=(%f)*x+(%f)*y+(%f)',px, py, pc))
+title(sprintf('Plotting plane z=(%f)*x+(%f)*y+(%f)',px, py, pc));
