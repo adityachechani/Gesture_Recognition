@@ -1,5 +1,6 @@
 clc;
 clear all;
+close all;
 fname = 'triangle.json';
 
 fid = fopen(fname);
@@ -29,7 +30,7 @@ Z = pc + px.*x + py.*y;
 plot3(x, y, Z, 'ro');
 title(sprintf('Plotting plane z=(%f)*x+(%f)*y+(%f)',px, py, pc));
 
-n = [px, py, -1];
+n = [px/pc, py/pc, -1/pc];
 m = [0, 0, -1];
 
 n_mag = norm(n)
@@ -37,3 +38,7 @@ m_mag = norm(m)
 d = dot(n,m)
 
 theta = acos(1./n_mag)
+
+new = rotx(-1*theta*180/pi)*[x';y';Z'];
+figure;
+plot3(new(1,:),new(2,:),new(3,:))
