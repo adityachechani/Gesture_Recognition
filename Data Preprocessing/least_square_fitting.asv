@@ -29,11 +29,11 @@ Z = pc + px.*x + py.*y;
 plot3(x, y, Z, 'ro');
 title(sprintf('Plotting plane z=(%f)*x+(%f)*y+(%f)',px, py, pc));
 
-n = [px, py, -1];
-m = [0, 0, -1];
+n = [px, py, 1];
+m = [0, 0, 1];
 
 n_mag = norm(n)
 m_mag = norm(m)
-d = dot(n,m)
 
-theta = acos(1./n_mag)
+
+theta = acos(dot(n,m)/(n_mag*m_mag))
