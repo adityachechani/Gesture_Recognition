@@ -41,6 +41,6 @@ XYZnew = AxelRot(XYZ, angle, [1 0 0],[]);
 figure;
 plot3(x, y, z, 'r');
 hold on
-plot3(XYZnew(1,:), XYZnew(2,:), XYZnew(3,:));
+plot3(XYZnew(1,:) , XYZnew(2,:), XYZnew(3,:));
 
 
