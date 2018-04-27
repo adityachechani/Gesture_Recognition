@@ -2,6 +2,10 @@ import Leap, sys, thread, time
 from Leap  import CircleGesture, KeyTapGesture, ScreenTapGesture, SwipeGesture
 import pickle
 import json
+import sys
+
+shape = sys.argv[1]
+file_name = shape + ".json"
 
 def write_json(data, fname):
     f = open(fname, 'w')
@@ -81,7 +85,7 @@ def main():
     except KeyboardInterrupt:
         pass
     finally:
-        write_json(listener.a, 'triangle.json')
+        write_json(listener.a, file_name)
         controller.remove_listener(listener)
 
 if __name__ == "__main__":
