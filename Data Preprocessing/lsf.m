@@ -1,7 +1,6 @@
-clc;
-clear all;
-close all;
-fname = 'triangle/triangle11.json';
+function [ X,Y ] = lsf( fname )
+%UNTITLED4 Summary of this function goes here
+%   Detailed explanation goes here
 
 fid = fopen(fname);
 raw = fread(fid,inf);
@@ -16,18 +15,13 @@ z = val(:,3);
 x = (x - min(x))/(max(x) - min(x));
 y = (y - min(y))/(max(y) - min(y));
 z = (z - min(z))/(max(z) - min(z));
-
-figure;
 f=fit([x,y],z,'poly11','Normalize','on','Robust','Bisquare');
-
 coeffs = coeffvalues(f);
 pc = coeffs(1);
 px = coeffs(2);
 py = coeffs(3);
-plot( f, [x, y], z );
 
 XYZ = [x';y';z'];
-title(sprintf('Plotting plane z=(%f)*x+(%f)*y+(%f)',px, py, pc));
 
 N1 = [px/pc, py/pc, -1/pc];
 
@@ -37,12 +31,7 @@ cosang = dot(N1,N2); % actually n1.n2 = |n1||n2|cosang
 angle = acosd((cosang / norm(N1)*norm(N2)));
 
 XYZnew = AxelRot(XYZ, angle, [1 0 0],[]);
-
-figure;
-plot3(x, y, z, 'r');
-hold on
-plot3(XYZnew(1,:) , XYZnew(2,:), XYZnew(3,:));
-figure;
-plot(XYZnew(1,:) , XYZnew(2,:))
-
+X =(XYZnew(1,:))';
+Y = (XYZnew(2,:))';
+end
 
