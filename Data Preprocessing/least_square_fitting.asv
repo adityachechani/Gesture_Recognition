@@ -1,7 +1,7 @@
 clc;
 clear all;
 close all;
-fname = 'rectangle/rectangle15.json';
+fname = 'rectangle/rectangle10.json';
 
 fid = fopen(fname);
 raw = fread(fid,inf);
@@ -18,6 +18,16 @@ y = (y - min(y))/(max(y) - min(y));
 z = (z - min(z))/(max(z) - min(z));
 
 figure; %1
+[X1 Y1] = meshgrid(x,y);
+f = scatteredInterpolant(X,Y,Z);
+z = f(x,y);
+ 
+figure;
+surf(x,y,z) %interpolated
+% zlim([3 5]);
+% zticks(3:1:5);
+
+figure; %2
 f=fit([x,y],z,'poly11','Normalize','on','Robust','Bisquare');
 
 coeffs = coeffvalues(f);
@@ -29,7 +39,6 @@ plot( f, [x, y], z );
 XYZ = [x';y';z'];
 title(sprintf('Plotting plane z=(%f)*x+(%f)*y+(%f)',px, py, pc));
 
-
 Np = [-px/pc, -py/pc, 1/pc];
 N0 = [0, 0, 1];
 
@@ -38,21 +47,15 @@ rot_vector = cross(Np/norm(Np),[0,0,1]);
 angle = asind(norm(rot_vector));
 
 [XYZnew, R, t] = AxelRot(XYZ', angle, rot_vector, []);
+X =(XYZnew(1,:))';
+Y = (XYZnew(2,:))';
+Z = (XYZnew(3,:))';
 
-figure;
+figure; %3
 plot3(x, y, z, 'r');
 hold on
 plot3(XYZnew(1,:) , XYZnew(2,:), XYZnew(3,:));
-figure;
-plot(XYZnew(1,:) , XYZnew(2,:))
-
-
-% 
-% figure; %2
-% plot3(x, y, z, 'r');
-% hold on
-% plot3(XYZnew(1,:) , XYZnew(2,:), XYZnew(3,:));
-% figure;%3
-% plot(x , y , 'r');
-% hold on
-% plot(XYZnew(1,:) , XYZnew(2,:));
+figure;%4
+plot(x , y , 'r');
+hold on
+plot(XYZnew(1,:) , XYZnew(2,:));
