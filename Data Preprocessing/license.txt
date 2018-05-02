@@ -1,4 +1,4 @@
-Copyright (c) 2011, Matt Jacobson
+Copyright (c) 2005, Steven Michael
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
