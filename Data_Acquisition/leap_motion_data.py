@@ -73,9 +73,9 @@ class LeapMotionListener(Leap.Listener):
 
 def main():
     listener = LeapMotionListener()
-    print("LML")
+    # print("LML")
     controller = Leap.Controller()
-    print("L.C")
+    # print("L.C")
     controller.add_listener(listener)
     print("Press enter to quit")
 

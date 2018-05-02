@@ -1,7 +1,7 @@
-clc;
+ clc;
 clear all;
 close all;
-fname = 'rectangle/rectangle15.json';
+fname = 'triangle/triangle38.json'; %19 34 44
 
 fid = fopen(fname);
 raw = fread(fid,inf);
@@ -16,8 +16,11 @@ z = val(:,3);
 x = (x - min(x))/(max(x) - min(x));
 y = (y - min(y))/(max(y) - min(y));
 z = (z - min(z))/(max(z) - min(z));
+ 
+figure;
+scatter3(x,y,z) %interpolated
 
-figure; %1
+figure; %2
 f=fit([x,y],z,'poly11','Normalize','on','Robust','Bisquare');
 
 coeffs = coeffvalues(f);
@@ -41,11 +44,11 @@ X =(XYZnew(1,:))';
 Y = (XYZnew(2,:))';
 Z = (XYZnew(3,:))';
 
-figure;
+figure; %3
 plot3(x, y, z, 'r');
 hold on
 plot3(XYZnew(1,:) , XYZnew(2,:), XYZnew(3,:));
-figure;
+figure;%4
 plot(x , y , 'r');
 hold on
 plot(XYZnew(1,:) , XYZnew(2,:));

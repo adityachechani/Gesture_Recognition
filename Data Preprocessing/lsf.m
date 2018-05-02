@@ -33,4 +33,16 @@ angle = acosd((cosang / norm(N1)*norm(N2)));
 XYZnew = AxelRot(XYZ, angle, [1 0 0],[]);
 X =(XYZnew(1,:))';
 Y = (XYZnew(2,:))';
+
+% Np = [-px/pc, -py/pc, 1/pc];
+% N0 = [0, 0, 1];
+% 
+% XYZ = [x(:),y(:),z(:)];
+% rot_vector = cross(Np/norm(Np),[0,0,1]);
+% angle = asind(norm(rot_vector));
+% 
+% [XYZnew, R, t] = AxelRot(XYZ', angle, rot_vector, []);
+% X =(XYZnew(1,:))';
+% Y = (XYZnew(2,:))';
+% Z = (XYZnew(3,:))';
 end
