@@ -1,26 +1,31 @@
 clc;
 clear all;
 shapes = ["circle";"rectangle";"triangle"];
-X= zeros(100,45);
+X= zeros(40,45);
 for i = 1:45
     fname = char(strcat(shapes(ceil(i/15)),"/",shapes(ceil(i/15)),string((mod(i,15)==0)*1 + ~(mod(i,15)==0)*mod(i,15)),".json"));
     [X_d,Y_d]= lsf(fname);
     S = X_d + 1i* Y_d;
     ft = fftshift(fft(S,1024));
-    a =ifft(fftshift(ft(463:562)));
+    a =(fftshift(ft(493:532)));
     X(:,i) = abs(a);
 end
-X_test = X(:,39)';
-X = X(:,[1:38,40:45])';
 y = [1*ones(1,15),2*ones(1,15),3*ones(1,15)]';
-XX= sum(X.*X,2);
-XXdash = 2 * X * X_test';
-distance = XX-XXdash;
-[v,i]= sort(distance);
-pred = mode(y(i(1:5)));
-
-
-
+pred = zeros(43,1);
+for j = 2:44
+    X_test = X(:,j)';
+    Xtrain = X(:,[1:j-1,j+1:45])';
+    ytrain = y([1:j-1,j+1:45]);
+    XX= sum(Xtrain.*Xtrain,2);
+    XXdash = 2 * Xtrain * X_test';
+    distance = XX-XXdash;
+    [v,idx] = min(distance);
+    pred(j-1) = ytrain(idx);
+%     [v,i]= sort(distance);
+%     pred(j-1) = mode(ytrain(i(1:3)));
+    end
+ccr = sum(pred==y(2:44))/43;
+conf = confusionmat(pred,y(2:44));
 
 
 
