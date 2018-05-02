@@ -1,4 +1,4 @@
-clc;
+ clc;
 clear all;
 close all;
 fname = 'rectangle/rectangle45.json';
