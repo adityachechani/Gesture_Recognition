@@ -1,7 +1,7 @@
 clc;
 clear all;
 close all;
-fname = 'rectangle/rectangle45.json';
+fname = 'triangle/triangle38.json'; %19 34 44
 
 fid = fopen(fname);
 raw = fread(fid,inf);
