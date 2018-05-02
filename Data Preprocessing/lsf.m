@@ -21,17 +21,16 @@ pc = coeffs(1);
 px = coeffs(2);
 py = coeffs(3);
 
-XYZ = [x';y';z'];
+Np = [-px/pc, -py/pc, 1/pc];
+N0 = [0, 0, 1];
 
-N1 = [px/pc, py/pc, -1/pc];
+XYZ = [x(:),y(:),z(:)];
+rot_vector = cross(Np/norm(Np),[0,0,1]);
+angle = asind(norm(rot_vector));
 
-% N1 = [1 -4 3]; % Normal vector to plane
-N2= [0 0 -1]; % normal vector to x-y plane
-cosang = dot(N1,N2); % actually n1.n2 = |n1||n2|cosang
-angle = acosd((cosang / norm(N1)*norm(N2)));
-
-XYZnew = AxelRot(XYZ, angle, [1 0 0],[]);
+[XYZnew, R, t] = AxelRot(XYZ', angle, rot_vector, []);
 X =(XYZnew(1,:))';
 Y = (XYZnew(2,:))';
+Z = (XYZnew(3,:))';
 end
 
