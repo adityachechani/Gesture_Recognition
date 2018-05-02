@@ -13,12 +13,12 @@ end
 X = X';
 y = [1*ones(1,50),2*ones(1,50),3*ones(1,50)]';
 t = (1:150)';
-a =[ones(30,1);zeros(20,1)];
-a1 = a(randperm(length(a)));
-a2 = a(randperm(length(a)));
-a3 = a(randperm(length(a)));
-train_idx = logical([a1;a2;a3]);
-% load bestinx.mat
+% a =[ones(40,1);zeros(10,1)];
+% a1 = a(randperm(length(a)));
+% a2 = a(randperm(length(a)));
+% a3 = a(randperm(length(a)));
+% train_idx = logical([a1;a2;a3]);
+load bestinx.mat
 test_idx = ~train_idx;
 Xtrain = X(train_idx,:);
 Xtest = X(test_idx,:);
@@ -29,10 +29,10 @@ ytest= y(test_idx);
     XX= sum(Xtrain.*Xtrain,2);
     XXdash = 2 * Xtrain * Xtest';
     distance = XX-XXdash;
-   [v,idx] = min(distance);
-    pred = ytrain(idx);
-%     [v,i]= sort(distance,'ascend');
-%     pred = (mode(ytrain(i(1:3,:))))';
+%    [v,idx] = min(distance);
+%     pred = ytrain(idx);
+    [v,i]= sort(distance,'ascend');
+    pred = (mode(ytrain(i(1:5,:))))';
 ccr = sum(pred==ytest)/length(ytest);
 conf = confusionmat(pred,ytest);
 
