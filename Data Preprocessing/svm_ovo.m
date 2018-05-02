@@ -10,22 +10,6 @@ for i = 1:45
     a =(fftshift(ft(493:532)));
     X(:,i) = abs(a);
 end
+X = X';
 y = [1*ones(1,15),2*ones(1,15),3*ones(1,15)]';
 pred = zeros(43,1);
-for j = 2:44
-X_test = X(:,j)';
-Xtrain = X(:,[1:j-1,j+1:45])';
-ytrain = y([1:38,40:45]);
-XX= sum(Xtrain.*Xtrain,2);
-XXdash = 2 * Xtrain * X_test';
-distance = XX-XXdash;
-[v,idx] = min(distance);
-
-% [v,i]= sort(distance);
-% pred(j-1) = mode(ytrain(i(1)));
-end
-ccr = sum(pred==y(2:44))/43;
-conf = confusionmat(pred,y(2:44));
-
-
-
