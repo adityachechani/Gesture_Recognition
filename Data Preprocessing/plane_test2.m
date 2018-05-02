@@ -29,7 +29,7 @@ Z = (XYZnew(3,:))';
 [x y] = meshgrid(X,Y);
 f = scatteredInterpolant(X,Y,Z);
 z = f(x,y);
-
+ 
 figure;
 surf(x,y,z) %interpolated
 zlim([3 5]);
