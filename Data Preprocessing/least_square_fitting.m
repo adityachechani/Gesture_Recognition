@@ -1,4 +1,4 @@
-clc;
+ clc;
 clear all;
 close all;
 fname = 'triangle/triangle38.json'; %19 34 44
