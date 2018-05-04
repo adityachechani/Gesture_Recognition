@@ -40,10 +40,10 @@ for class = 1:3
                 'boxconstraint', 2 .* vector_compensated,...
                 'kernelcachelimit', 10e5,...
                 'kernel_function','rbf',...
-                'rbf_sigma', 16);  
+                'rbf_sigma', 32);  
     y_pred = svmclassify(SVMStruct,test_vector);
     test_CCR(class) = mean(test_label==y_pred);
- a(:,:,class) = confusionmat(test_label, y_pred);
+ a(:,:,class) = confusionmat(y_pred, test_label);
 train_label = y(train_idx);
 test_label= y(test_idx);
 disp(class)
