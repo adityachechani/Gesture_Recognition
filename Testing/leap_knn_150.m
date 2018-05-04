@@ -22,7 +22,7 @@ t = (1:150)';
 load bestinx.mat
 test_idx = ~train_idx;
 Xtrain = X(train_idx,:);
-fname = 'rectangle_test.json';
+fname = 'circle_test.json';
     [X_d,Y_d]= lsf(fname);
     S = X_d + 1i* Y_d;
     ft = fftshift(fft(S,1024));
