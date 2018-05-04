@@ -1,7 +1,7 @@
 # Gesture_Recognition
 ### Shape Recognition using Leap Motion Controller
 
-### This document describes the various modules created in the project for virtual
+#### This document describes the various modules created in the project for virtual
   shape recognition using Leap Motion and also details the procedure to run it.
 
 leap_motion_data.py : Python file for raw data acquisition of index finger 
